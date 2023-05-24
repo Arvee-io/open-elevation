@@ -1,17 +1,19 @@
 version: "3.8"
 
 services:
-    server:
+    openelevation:
         restart: always
-        build:
-            context: .
-            dockerfile: ./docker/Dockerfile
+        image: openelevation/open-elevation
         volumes:
             - "./data:/code/data"
             - "./certs:/code/certs"
         environment:
             - PYTHONUNBUFFERED=1
         command: stdbuf -i0 -o0 -e0 python3 server.py
+        networks:
+            - arvee-backend_sail
         ports:
             - 8080:8080
-
+networks:
+    arvee-backend_sail:
+        external: true

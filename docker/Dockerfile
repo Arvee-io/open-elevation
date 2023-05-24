@@ -1,5 +1,7 @@
 FROM osgeo/gdal:ubuntu-small-latest-amd64
 
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ=UTC
 RUN apt-get update
 RUN apt-get install -y libspatialindex-dev unar bc python3-pip wget
 
